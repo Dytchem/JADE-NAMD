@@ -1,9 +1,11 @@
 #! /usr/bin/env python2
 
-
 from  gaussian_parser import gaussian_parser
 from  turbomole_parser import turbomole_parser
 from  molden_parser import molden_parser
+#from  molcas_molden_parser import molcas_molden_parser
+from  molpro_molden_parser import molpro_molden_parser
+#from  bagel_molden_parser import bagel_molden_parser
 
 # read in different type of log file and dump normal mode data.
 
@@ -30,7 +32,7 @@ class normal_mode_parser():
         info. about how to read log file & kind of log file
         """
         self.config['log_type'] = raw_input("LOG TYPE (avaiable): \
-gaussian/turbomole/mndo \n>> ")
+gaussian/turbomole/mndo/molcas/molpro/bagel \n>> ")
         n_atom = raw_input("Number of Atoms: ")
         n_mode = raw_input("Number of Normal Mode: ")
         self.config['log'] = raw_input("LOG file name: >> ")
@@ -52,6 +54,12 @@ gaussian/turbomole/mndo \n>> ")
             parser = turbomole_parser(self.config)
         elif log_type == "mndo":
             parser = molden_parser(self.config)
+        elif log_type == 'molcas':
+            parser = molcas_molden_parser(self.config)
+        elif log_type == 'molpro':
+            parser = molpro_molden_parser(self.config)
+#        elif log_type == 'bagel':
+#            parser = bagel_molden_parser(self.config)
         else:
             print "no other interface implemented!!!"
             exit(1)

@@ -89,6 +89,7 @@ class molpro_create():
         #        print natom_i, flag
 
         print natom_t
+        atoms = []
         for i in range(natom_t):
             record_t = atoms_t[i]
             atomname = record_t['name']
@@ -100,12 +101,29 @@ class molpro_create():
                 float(coord[1]) * bohr2ang,
                 float(coord[2]) * bohr2ang
             ]
+            atoms.append({
+                'name': atomname,
+                'coord': coord
+            })
 
             print >> fp, "%-10s%12.7f %12.7f %12.7f " % (atomname, \
                                                          float(coord[0]), float(coord[1]), float(coord[2]))
 
-        if t['tail'] != "":
-            print >> fp, "%s" % t['tail']
+        # to work the tail content
+        print "i_time = ", self.interface["parm"]["i_time"]
+        print "atoms = ", atoms
+        try:
+            with open(self.directory['root']+"/work_tail.py", "r") as f:
+                code = f.read()
+            exec(code)
+            tt = work_tail(t['tail'][2:], self.interface["parm"]["i_time"], atoms)
+        except Exception:
+            tt= t['tail'][2:]
+        print "Now the tail is:\n" ,tt,"\n"
+        # end work
+
+        if tt != "":
+            print >> fp,"}\n", "%s" % tt
 
         print "molpro_write:", os.getcwd(), jobfile
 

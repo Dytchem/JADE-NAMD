@@ -1,0 +1,27 @@
+&control
+dyn_method = 1,
+ntime = 800,
+dtime = 0.5,
+ntime_ele = 100,
+n_sav_stat = 1,
+n_sav_traj = 1,
+qm_method = 2,
+n_state = 4,
+md_state_list = "1, 2, 3, 4",
+i_state = 2,
+seed_random = -1,
+cor_dec = 0.1,
+label_nac_phase = 1,
+label_reject_hops = 1,
+hop_e = 1,
+label_read_velocity = 1,
+label_restart = 0,
+label_ZN = 0
+/
+
+&quantum
+qm_method = 2,
+label_external = 1
+qm_package = 105,
+/
+

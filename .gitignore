@@ -127,3 +127,5 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+test/
+work_tail_example_run

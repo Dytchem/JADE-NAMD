@@ -1,0 +1,42 @@
+*** Title
+memory,200,m
+file,2,wfu
+gprint,civector
+symmetry, nosym
+basis, 6-31G*(d)
+angstrom;
+geomtyp=xyz
+geometry={
+        10 
+
+N         -1.2153357364          0.0345063959         -1.2605081735
+N          1.1737486933         -0.0575536644         -1.2945480443
+C          2.6142278745          0.0708888871          1.0419962629
+H          1.7892463411          1.7927718192          2.2388985710
+H          2.0049490901         -1.3371357812          2.4308656662
+H          4.5653910558         -0.2686505078          0.9593075693
+C         -2.5411341258         -0.0431657774          1.0474450078
+H         -1.5979053092          1.3423706840          2.3376789393
+H         -4.5708432019          0.4308759976          0.7959085082
+H         -2.4839424781         -1.9703180598          1.8447446710
+}
+
+{multi
+closed,13;occ,17
+wf,32,1,0;state,4
+start,2140.2
+orbital,2140.2
+CPMCSCF,GRAD,1.1,spin=0.0,record=5101.1
+CPMCSCF,GRAD,2.1,spin=0.0,record=5102.1
+CPMCSCF,GRAD,3.1,spin=0.0,record=5103.1
+CPMCSCF,GRAD,4.1,spin=0.0,record=5104.1
+cpmcscf,nacm,1.1,2.1,record=5105.1
+}
+
+put,molden,cas.molden;orb,2140.2
+
+Force; samc, 5101.1; 
+Force; samc, 5102.1;
+Force; samc, 5103.1;
+Force; samc, 5104.1;
+Force; samc, 5105.1;

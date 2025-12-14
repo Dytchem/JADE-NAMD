@@ -2,7 +2,7 @@
 # suppose the JADE_HOME env. is exported
 #
 # i.e. 
-export JADE_HOME=/data/home/hudp/program/jade_mapping
+export JADE_HOME=/home/dytchem/JADE-NAMD
 
 # binary
 export PATH=$JADE_HOME/bin:$PATH

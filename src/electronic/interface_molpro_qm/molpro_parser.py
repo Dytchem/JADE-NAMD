@@ -24,7 +24,8 @@ class molpro_parser():
         log.get_energy()
         log.get_gradient()
         log.get_nac()
-        log.get_trdm()
+        # log.get_trdm()
+        log.get_other()
         log.collect_qm()
 
         return

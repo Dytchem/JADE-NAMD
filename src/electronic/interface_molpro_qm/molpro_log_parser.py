@@ -84,6 +84,7 @@ class molpro_log_parser():
             fileout3.write(filein4.read())
             filein4.close()
         else:
+            n_state = self.interface['parm']['n_state']
             for i_state in range(n_state):
                 for j_state in range(n_state):
                     fileout3.write('S' + str(i_state) + '    S' +
@@ -333,62 +334,66 @@ class molpro_log_parser():
         """
         Write other important information in QM output 
         """
-        es = []
-        gs = []
-        pat1e = re.compile("Excited states from <AA,BB:AA,BB> singles matrix")
-        pat2e = re.compile("Excitation energies and oscillator strengths")
-        float_number = '[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?'
-        pat1g = re.compile("Charge=(\s)+" + float_number + "(\s)+electrons")
-        pat2g = re.compile("XXYZ=(.*)YYXZ=(.*)ZZXY=(.*)")
+        fileout = open('qm_other.dat', 'a') # w: overwrites qm_other.dat, but transfered to di_time.out
+        log=open(self.files['mo'],"r")
 
-        # read all
-        file_energy = self.files['mo']
-        filein = open(file_energy, 'r')
+        # Add the needed information here!!!
 
-        line = "empty"
-        # Excited states from <AA,BB:AA,BB> singles matrix
-        while line != "":
-            line = filein.readline()
-            m1 = pat1e.search(line)
-            if m1 is not None:
-                break
-        line = filein.readline()
-        line = filein.readline()
+        fileout.write("i_time = "+str(self.interface["parm"]["i_time"])+"\n\n")
+        
+        fileout.write("Atom\tMulliken Charge\n")
+        L=self.get_atom_charges(log)
+        for i in xrange(0,len(L)):
+            fileout.write(str(i+1)+"\t\t"+str(L[i])+"\n")
+        fileout.write("\n")
 
-        while line != "":
-            line = filein.readline()
-            m2 = pat2e.search(line)
-            if m2 is not None:
-                break
-            es.append(line)
+        fileout.write(self.extract_dipole_raw_format(log)+"\n")
+        
 
-            # ground state.
-        while line != "":
-            line = filein.readline()
-            m1 = pat1g.search(line)
-            if m1 is not None:
-                break
-        gs.append(line)
-        while line != "":
-            line = filein.readline()
-            gs.append(line)
-            m2 = pat2g.search(line)
-            if m2 is not None:
-                break
-        filein.close()
-
-        fileout = open('qm_other.dat', 'w')
-        for line in gs:
-            fileout.write(line)
-        fileout.write(
-            '------------------------------------------------------------- \n')
-        for line in es:
-            fileout.write(line)
-        fileout.write(
-            '------------------------------------------------------------- \n')
+        # End add!!!
         fileout.close()
-
+        log.close()
         return
+    
+    def get_atom_charges(self, f):
+        f.seek(0)
+        charges = []
+        in_target = False
+
+        for line in f:
+            line = line.strip()
+            if "Unique atom" in line and "Charge" in line:
+                in_target = True
+                continue
+            if in_target and line:
+                parts = line.split()
+                if parts[0].isdigit() and len(parts) >= 10:
+                    sign = parts[-2]
+                    num = parts[-1]
+                    try:
+                        charge = float(sign + num)
+                        charges.append(charge)
+                    except:
+                        continue
+                elif not parts[0].isdigit() and charges:
+                    break
+        return charges
+    
+    def extract_dipole_raw_format(self, file_obj):
+        file_obj.seek(0)
+        content = file_obj.read()
+        pattern = r"!MCSCF\s+(expec|trans)\s+<(\d+\.\d+)\|DM([XYZ])\|(\d+\.\d+)>\s+(-?\d+\.\d+)\s+au\s+=\s+(-?\d+\.\d+)\s+Debye"
+        matches = re.findall(pattern, content, re.IGNORECASE)
+
+        if not matches:
+            return ""
+
+        output = ["%-15s\t%-10s\t%-10s" % ("Dipole", "au", "Debye")]
+        for m in matches:
+            dipole_op = "<%s|DM%s|%s>" % (m[1], m[2], m[3])
+            output.append("%-15s\t%-10s\t%-10s" % (dipole_op, m[4], m[5]))
+
+        return "\n".join(output)
 
 
 ### main program

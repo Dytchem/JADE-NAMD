@@ -24,6 +24,7 @@ class mndo_parser():
         log.get_energy()
         log.get_gradient()
         log.get_nac()
+        log.get_trdm()
         log.collect_qm()
 
         return

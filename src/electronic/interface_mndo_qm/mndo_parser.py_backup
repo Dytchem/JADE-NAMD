@@ -1,11 +1,11 @@
 #! /usr/bin/python
 
-from molpro_log_parser import *
+from mndo_log_parser import *
 
 # mndo parser
 
 
-class molpro_parser():
+class mndo_parser():
     def __init__(self, config={}):
         """
         parser mndo log or fort files to extract relevant data.
@@ -18,13 +18,13 @@ class molpro_parser():
         """
         parse one tddft calculation result.
         """
-        log = molpro_log_parser(self.config)
+        log = mndo_log_parser(self.config)
 
         # forces
         log.get_energy()
         log.get_gradient()
         log.get_nac()
-        log.get_trdm()
+        #log.get_trdm()
         log.collect_qm()
 
         return

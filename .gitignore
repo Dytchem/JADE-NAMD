@@ -127,5 +127,10 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+
+
+# my ignore
 test/
 work_tail_example_run
+bin/JADERC

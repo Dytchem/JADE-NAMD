@@ -19,7 +19,10 @@ class mndo_run:
         """
         self.directory = {
             "qc": "./QC_TMP",
-            "work": "./QC_TMP/MNDO_TMP",
+            "work": "./MNDO_TMP",
+             
+           #backup  "work": "./QC_TMP/MNDO_TMP",
+           # "home": "./"  
             "home": "./QC_TMP"
         }
         self.files = {
@@ -171,10 +174,10 @@ class mndo_run:
         sourceFile = sourcePath + '/' + 'qm_results.dat'
         destPath = './'
         shutil.copy2(sourceFile, destPath)
-
-        #        sourceFile = sourcePath + '/' + 'qm_other.dat'
-        #        destPath = './'
-        #        shutil.copy2(sourceFile, destPath)
+        # why does not work for qm_other.dat?
+        sourceFile = sourcePath + '/' + 'qm_other.dat'
+        destPath = './'
+        shutil.copy2(sourceFile, destPath)
 
         print 'Finish QC calculation'
 

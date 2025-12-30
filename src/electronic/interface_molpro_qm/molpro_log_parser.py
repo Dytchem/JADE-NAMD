@@ -3,7 +3,6 @@ import copy
 import os
 import re
 import sys
-
 sys.path.append("../tools/")
 import tools
 
@@ -33,7 +32,6 @@ class molpro_log_parser():
                 'interface']
             self.files[
                 "mo"] = self.directory['work'] + "/" + files['molpro_log']
-
         self.load()
         return
 
@@ -71,11 +69,15 @@ class molpro_log_parser():
         filein4 = open('qm_energy.dat', 'r')
         fileout3.write(filein4.read())
         filein4.close()
-
+# if esa, close
         filein4 = open('qm_gradient.dat', 'r')
         fileout3.write(filein4.read())
         filein4.close()
 
+#        filein4 = open('qm_trdm.dat', 'r')
+#        fileout3.write(filein4.read())
+#        filein4.close()
+# if esa, close
         sourceFile = 'qm_nac.dat'
         if os.path.isfile(sourceFile):
             filein4 = open('qm_nac.dat', 'r')
@@ -141,9 +143,10 @@ class molpro_log_parser():
         file_out.write(' Gradient of electronic states' + '\n')
 
         pattern = re.compile("SA-MC GRADIENT FOR STATE")
-
+#        print (file_in)
         line = "NOT EMPTY LINE"
         for i_state in range(n_state):
+#        for i_state in range(2):
             file_out.write('  State:           ' + str(i_state + 1) + '\n')
             while line != "":
                 line = file_in.readline()
@@ -195,7 +198,7 @@ class molpro_log_parser():
         logfile = self.files['mo']
 
         file_in = open(logfile, "r")
-
+#        print (file_in)
         pattern = re.compile("SA-MC NACME FOR STATES")
 
         line = "NOT EMPTY LINE"
@@ -249,6 +252,77 @@ class molpro_log_parser():
         file_out.close()
 
         return
+
+
+    # -------------------------------------------------------------------------
+    #   %%% Read the transition diople moments
+    #   qm_trdm.dat
+    #   Attention:
+    # ---------------------------------------------------------------------------
+
+    def get_trdm(self):
+        """ read transition diople moments and punch out """
+#        print("sss")
+        n_state = self.interface['parm']['n_state']
+        n_atom = self.interface['parm']['n_atom']
+
+        logfile = self.files['mo']
+        file_in = open(logfile, "r")
+#        file_out = open("qm_trdm.dat", "a")
+        file_out = open("qm_other.dat","w")
+        file_out.write(' Transition diople moments of electronic states' + '\n')
+
+        pattern = re.compile(r'(!MCSCF trans.+)')
+
+        line = "NOT EMPTY LINE"
+#        print (file_in)
+        line = file_in.read().splitlines()
+        line = [x.strip(' ') for x in line]
+
+        key = []
+        for x in line:
+            m = pattern.match(x)
+            if m:
+#       print ('ss')
+                line_num = line.index(m.group(1))
+                key.append(line[line_num])
+        key = key[0:len(key)/2]
+        key_x = key[0:len(key)/3]
+        key_y = key[len(key)/3:len(key)*2/3]
+        key_z = key[len(key)*2/3:len(key)]
+
+        trdm_x = []
+        trdm_y = []
+        trdm_z = []
+
+
+        for i in range(n_state):
+            for y in key_x:
+                n = pattern.match(y)
+                if n:
+                   trdm_x.append(y)
+
+            for y in key_y:
+                n = pattern.match(y)
+                if n:
+                   trdm_y.append(y)
+
+            for y in key_z:
+                n = pattern.match(y)
+                if n:
+                   trdm_z.append(y)
+
+#        print(trdm_x)
+        for x in range(n_state):
+            for y in range(x+1,n_state):
+                f = x + y*(y - 1)/2
+                file_out.write('{0}   {1}  {2:>18} {3:>18} {4:>18} \n'.format(x,y,trdm_x[f].split()[3],trdm_y[f].split()[3],trdm_z[f].split()[3]))
+
+        file_in.close()
+        file_out.close()
+
+        return
+
 
     # -------------------------------------------------------------------------
     #   %%% Read all other important information of QM output

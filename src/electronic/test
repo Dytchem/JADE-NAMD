@@ -1,0 +1,101 @@
+./interface_bagel_qm/bagel_log_parser.py:        fileout3 = open('qm_results.dat', 'w')
+Binary file ./interface_bagel_qm/bagel_log_parser.pyc matches
+./interface_bagel_qm/bagel_run.py:        sourceFile = sourcePath + '/' + 'qm_results.dat'
+Binary file ./interface_bagel_qm/bagel_run.pyc matches
+./interface_gamess_qm/gms_log_parser2.py:        fileout3 = open('qm_results.dat', 'w')
+./interface_gamess_qm/gms_log_parser.py:        fileout3 = open('qm_results.dat', 'w')
+Binary file ./interface_gamess_qm/gms_log_parser.pyc matches
+./interface_gamess_qm/gms_nac.py:        sourceFile = self.directory['work'] + '/qm_results.dat'
+./interface_gamess_qm/gms_nac.py:        destFile   = self.directory['nac']  + '/qm_results.dat'
+./interface_gamess_qm/gms_nac.py:        fp = open('qm_results.dat','r')
+./interface_gamess_qm/gms_nac.py:        shutil.copyfile("./qm_result_update.dat", "./qm_results.dat")
+./interface_gamess_qm/gms_nac.py:        shutil.copyfile("./qm_results.dat", "../../qm_results.dat")          
+Binary file ./interface_gamess_qm/gms_nac.pyc matches
+./interface_gamess_qm/gms_nonzero.py:        qm_resultfile = 'qm_results.dat'
+./interface_gamess_qm/gms_nonzero.py:        sourceFile = self.directory['work'] + '/qm_results.dat'
+Binary file ./interface_gamess_qm/gms_nonzero.pyc matches
+./interface_gamess_qm/gms_zero.py:        sourceFile = sourcePath + '/' + 'qm_results.dat'
+Binary file ./interface_gamess_qm/gms_zero.pyc matches
+./interface_gaussian_oniom/gau_log_parser.py:        fileout3 = open('qm_results.dat', 'w')
+./interface_gaussian_oniom/gau_log_wf_parser.py:        fileout3 = open('qm_results.dat', 'w')
+Binary file ./interface_gaussian_oniom/gau_log_wf_parser.pyc matches
+./interface_gaussian_oniom/gau_nac.py:        sourceFile = self.directory['work'] + '/qm_results.dat'
+./interface_gaussian_oniom/gau_nac.py:        destFile   = self.directory['nac']  + '/qm_results.dat'
+./interface_gaussian_oniom/gau_nac.py:        fp = open('qm_results.dat','r')
+./interface_gaussian_oniom/gau_nac.py:        shutil.copyfile("./qm_result_update.dat", "./qm_results.dat")
+./interface_gaussian_oniom/gau_nac.py:        shutil.copyfile("./qm_results.dat", "../../qm_results.dat")          
+Binary file ./interface_gaussian_oniom/gau_nac.pyc matches
+./interface_gaussian_oniom/gau_nonzero.py:        qm_resultfile = 'qm_results.dat'
+./interface_gaussian_oniom/gau_nonzero.py:        sourceFile = self.directory['work'] + '/qm_results.dat'
+Binary file ./interface_gaussian_oniom/gau_nonzero.pyc matches
+./interface_gaussian_oniom/gau_zero.py:        sourceFile = sourcePath + '/' + 'qm_results.dat'
+Binary file ./interface_gaussian_oniom/gau_zero.pyc matches
+./interface_gaussian_qm/gau_log_parser.py:        fileout3 = open('qm_results.dat', 'w')
+Binary file ./interface_gaussian_qm/gau_log_parser.pyc matches
+./interface_gaussian_qm/gau_nac.py:        sourceFile = self.directory['work'] + '/qm_results.dat'
+./interface_gaussian_qm/gau_nac.py:        destFile   = self.directory['nac']  + '/qm_results.dat'
+./interface_gaussian_qm/gau_nac.py:        fp = open('qm_results.dat','r')
+./interface_gaussian_qm/gau_nac.py:        shutil.copyfile("./qm_result_update.dat", "./qm_results.dat")
+./interface_gaussian_qm/gau_nac.py:        shutil.copyfile("./qm_results.dat", "../../qm_results.dat")          
+Binary file ./interface_gaussian_qm/gau_nac.pyc matches
+./interface_gaussian_qm/gau_nonzero.py:        qm_resultfile = 'qm_results.dat'
+./interface_gaussian_qm/gau_nonzero.py:        sourceFile = self.directory['work'] + '/qm_results.dat'
+Binary file ./interface_gaussian_qm/gau_nonzero.pyc matches
+./interface_gaussian_qm/gau_zero.py:        sourceFile = sourcePath + '/' + 'qm_results.dat'
+Binary file ./interface_gaussian_qm/gau_zero.pyc matches
+./interface_gaussian_spin/Collection.py:        fp = open('qm_results.dat','r')
+./interface_gaussian_spin/Collection.py:        shutil.copyfile("./qm_result_update.dat", "./qm_results.dat")
+./interface_gaussian_spin/Collection.py:        shutil.copyfile("./qm_results.dat", "../../qm_results.dat")          
+./interface_gaussian_spin/firstStep.py:        sourceFile = sourcePath + '/' + 'qm_results.dat'
+./interface_gaussian_spin/gau_nonzero.py:        qm_resultfile = 'qm_results.dat'
+./interface_gaussian_spin/gau_nonzero.py:        sourceFile = self.directory['work'] + '/qm_results.dat'
+./interface_gaussian_spin/gau_zero.py:        sourceFile = sourcePath + '/' + 'qm_results.dat'
+./interface_gaussian_spin/nextStep.py:        qm_resultfile = 'qm_results.dat'
+./interface_gaussian_spin/nextStep.py:        sourceFile = self.directory['work'] + '/qm_results.dat'
+./interface_gaussian_spin/Package.py:        fp = open('qm_results.dat','r')
+./interface_gaussian_spin/Package.py:        shutil.copyfile("./qm_result_update.dat", "./qm_results.dat")
+./interface_gaussian_spin/Package.py:        shutil.copyfile("./qm_results.dat", "../../qm_results.dat")          
+./interface_general_qm/gms_nac.py:        sourceFile = self.directory['work'] + '/qm_results.dat'
+./interface_general_qm/gms_nac.py:        destFile   = self.directory['nac']  + '/qm_results.dat'
+./interface_general_qm/gms_nac.py:        fp = open('qm_results.dat','r')
+./interface_general_qm/gms_nac.py:        shutil.copyfile("./qm_result_update.dat", "./qm_results.dat")
+./interface_general_qm/gms_nac.py:        shutil.copyfile("./qm_results.dat", "../../qm_results.dat")          
+./interface_general_qm/gms_nonzero.py:        qm_resultfile = 'qm_results.dat'
+./interface_general_qm/gms_nonzero.py:        sourceFile = self.directory['work'] + '/qm_results.dat'
+./interface_general_qm/gms_zero.py:        sourceFile = sourcePath + '/' + 'qm_results.dat'
+./interface_mndo_qm/mndo_log_parser.py:        fileout3 = open('qm_results.dat', 'w')
+Binary file ./interface_mndo_qm/mndo_log_parser.pyc matches
+./interface_mndo_qm/mndo_run.py:        sourceFile = sourcePath + '/' + 'qm_results.dat'
+Binary file ./interface_mndo_qm/mndo_run.pyc matches
+./interface_molpro_qm/molpro_log_parser.py:        fileout3 = open('qm_results.dat', 'w')
+Binary file ./interface_molpro_qm/molpro_log_parser.pyc matches
+./interface_molpro_qm/molpro_run.py:        sourceFile = sourcePath + '/' + 'qm_results.dat'
+Binary file ./interface_molpro_qm/molpro_run.pyc matches
+./interface_qchem_qm/qchem_log_parser.py:        fileout3 = open('qm_results.dat', 'w')
+Binary file ./interface_qchem_qm/qchem_log_parser.pyc matches
+./interface_qchem_qm/qchem_run.py:        sourceFile = sourcePath + '/' + 'qm_results.dat'
+Binary file ./interface_qchem_qm/qchem_run.pyc matches
+./interface_turbomole_qm/read_tur_tool.py:     fileout3=open('qm_results.dat', 'w')
+Binary file ./interface_turbomole_qm/read_tur_tool.pyc matches
+./interface_turbomole_qm/read_tur_tool_ricc.py:     fileout3=open('qm_results.dat', 'w')
+Binary file ./interface_turbomole_qm/read_tur_tool_ricc.pyc matches
+./interface_turbomole_qm/tur_nac.py:    sourceFile = './QC_TMP/TUR_TMP/qm_results.dat'
+./interface_turbomole_qm/tur_nac.py:    destFile =   './QC_TMP/NAC/qm_results.dat'
+Binary file ./interface_turbomole_qm/tur_nac.pyc matches
+./interface_turbomole_qm/tur_nac_tool.py:     filein1=open('qm_results.dat','r')
+./interface_turbomole_qm/tur_nac_tool.py:     filein1=open('qm_results.dat','r')
+./interface_turbomole_qm/tur_nac_tool.py:     filein1=open('qm_results.dat','r')                                                 
+./interface_turbomole_qm/tur_nac_tool.py:     filein1=open('qm_results.dat','r')
+./interface_turbomole_qm/tur_nac_tool.py:     shutil.copyfile("./qm_result_update.dat", "./qm_results.dat")
+./interface_turbomole_qm/tur_nac_tool.py:     shutil.copyfile("./qm_results.dat", "../../qm_results.dat")
+Binary file ./interface_turbomole_qm/tur_nac_tool.pyc matches
+./interface_turbomole_qm/tur_nonzero.py:    qm_resultfile = 'qm_results.dat'
+./interface_turbomole_qm/tur_nonzero.py:    sourceFile = './QC_TMP/TUR_TMP/qm_results.dat'
+Binary file ./interface_turbomole_qm/tur_nonzero.pyc matches
+./interface_turbomole_qm/tur_nonzero_ricc.py:    qm_resultfile = 'qm_results.dat'
+./interface_turbomole_qm/tur_nonzero_ricc.py:    sourceFile = './QC_TMP/TUR_TMP/qm_results.dat'
+Binary file ./interface_turbomole_qm/tur_nonzero_ricc.pyc matches
+./interface_turbomole_qm/tur_zero.py:    sourceFile = './QC_TMP/TUR_TMP/qm_results.dat'
+Binary file ./interface_turbomole_qm/tur_zero.pyc matches
+./interface_turbomole_qm/tur_zero_ricc.py:    sourceFile = './QC_TMP/TUR_TMP/qm_results.dat'
+Binary file ./interface_turbomole_qm/tur_zero_ricc.pyc matches

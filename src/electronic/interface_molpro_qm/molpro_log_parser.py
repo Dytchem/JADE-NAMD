@@ -334,7 +334,7 @@ class molpro_log_parser():
         """
         Write other important information in QM output 
         """
-        fileout = open('qm_other.dat', 'a') # w: overwrites qm_other.dat, but transfered to di_time.out
+        fileout = open('qm_other.dat', 'w') # w: overwrites qm_other.dat, but transfered to di_time.out
         log=open(self.files['mo'],"r")
 
         # Add the needed information here!!!

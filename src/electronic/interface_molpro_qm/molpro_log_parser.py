@@ -343,9 +343,11 @@ class molpro_log_parser():
         
         fileout.write("Atom\tMulliken Charge\n")
         L=self.get_atom_charges(log)
-        for i in xrange(0,len(L)):
-            fileout.write(str(i+1)+"\t\t"+str(L[i])+"\n")
-        fileout.write("\n")
+        for state_idx, charges in enumerate(L):
+            fileout.write("State {}.1\n".format(state_idx + 1))
+            for i in xrange(0, len(charges)):
+                fileout.write(str(i+1)+"\t\t"+str(charges[i])+"\n")
+            fileout.write("\n")
 
         fileout.write(self.extract_dipole_raw_format(log)+"\n")
         
@@ -357,12 +359,22 @@ class molpro_log_parser():
     
     def get_atom_charges(self, f):
         f.seek(0)
+        all_charges = []
         charges = []
         in_target = False
 
         for line in f:
             line = line.strip()
+            if not line:  # empty line
+                if charges:
+                    all_charges.append(charges)
+                    charges = []
+                in_target = False
+                continue
             if "Unique atom" in line and "Charge" in line:
+                if charges:
+                    all_charges.append(charges)
+                    charges = []
                 in_target = True
                 continue
             if in_target and line:
@@ -375,9 +387,9 @@ class molpro_log_parser():
                         charges.append(charge)
                     except:
                         continue
-                elif not parts[0].isdigit() and charges:
-                    break
-        return charges
+        if charges:
+            all_charges.append(charges)
+        return all_charges
     
     def extract_dipole_raw_format(self, file_obj):
         file_obj.seek(0)

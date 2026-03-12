@@ -117,9 +117,49 @@ class molpro_run:
         jobin = self.files["molpro_input"]
         jobout = self.files["molpro_log"]
 
-        #        exec_name1 = exec_name + " < " + jobin + " > " + jobout
-        exec_name = exec_name + " -d ./tmp" + " -W ./wfu " + jobin + ' -o ' + jobout
-        #exec_name = exec_name + " -d ./tmp" + " -W ./wfu " + "-n 2 "+ jobin + ' -o ' + jobout
+        # Default options
+        default_options = {
+            '-d': './tmp',
+            '-W': './wfu'
+        }
+        
+        # Read key file
+        key_options = []
+        try:
+            with open(self.directory['root'] + "/molpro_key.inp", "r") as f:
+                key_content = f.read().strip()
+            if key_content:
+                key_options = key_content.split()
+        except Exception:
+            pass
+        
+        # Parse key_options
+        extra_options = []
+        i = 0
+        while i < len(key_options):
+            opt = key_options[i]
+            if opt in default_options:
+                if i + 1 < len(key_options):
+                    default_options[opt] = key_options[i + 1]
+                    i += 2
+                else:
+                    i += 1  # invalid, skip
+            else:
+                extra_options.append(opt)
+                i += 1
+                if i < len(key_options) and not key_options[i].startswith('-'):
+                    extra_options.append(key_options[i])
+                    i += 1
+        
+        # Build options string
+        options = ""
+        for k, v in default_options.items():
+            options += f" {k} {v}"
+        for opt in extra_options:
+            options += f" {opt}"
+        
+        exec_name = exec_name + options + " " + jobin + ' -o ' + jobout
+        print "exec_name = ", exec_name
         os.system(exec_name)
         return
 

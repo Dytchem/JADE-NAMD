@@ -153,10 +153,10 @@ class molpro_run:
         
         # Build options string
         options = ""
-        for k, v in default_options.items():
-            options += f" {k} {v}"
+        for k, v in default_options.iteritems():
+            options += " {} {}".format(k, v)
         for opt in extra_options:
-            options += f" {opt}"
+            options += " {}".format(opt)
         
         exec_name = exec_name + options + " " + jobin + ' -o ' + jobout
         print "exec_name = ", exec_name
